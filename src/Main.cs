@@ -27,7 +27,7 @@ namespace com.tammymakesthings.circtool
 
         public static void DoVersionCommand(bool verboseMode)
         {
-            new VersionHandler(verboseMode).HandleCommand();
+            Console.WriteLine(new VersionHandler(verboseMode).HandleCommand());
         }
     }
 }

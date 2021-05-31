@@ -9,19 +9,27 @@ namespace com.tammymakesthings.circtool.handlers
     public class BaseCommandHandler
     {
         public bool VerboseMode { get; set; }
+        public System.Text.StringBuilder Output { get; set; }
+
+        public void AddOutput(string theOutput)
+        {
+            this.Output.AppendLine(theOutput);
+        }
+
+        public string GetOutput()
+        {
+            return this.Output.ToString();
+        }
         public BaseCommandHandler(bool verboseMode)
         {
+            this.Output = new System.Text.StringBuilder();
             this.VerboseMode = verboseMode;
         }
 
-        public virtual void HandleCommand()
+        public virtual string HandleCommand()
         {
-            this.HandleCommand(Console.In, Console.Out, Console.Error);
-        }
-
-        public virtual void HandleCommand(TextReader stdin, TextWriter stdout, TextWriter stderr)
-        {
-
+            this.AddOutput("BaseCommandHandler");
+            return this.GetOutput();
         }
     }
 }

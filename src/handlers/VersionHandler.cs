@@ -1,6 +1,7 @@
 using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using com.tammymakesthings.circtool.lib;
@@ -13,13 +14,15 @@ namespace com.tammymakesthings.circtool.handlers
         {
         }
 
-        public override void HandleCommand(TextReader stdin, TextWriter stdout, TextWriter stderr)
+        public override string HandleCommand()
         {
-            stdout.WriteLine(String.Format(
-                "circtool v{0} - Tammy Cravit - <tammymakesthings@gmail.com> - {1}",
+            this.AddOutput(String.Format("circtool {0} - {1}",
                 com.tammymakesthings.circtool.lib.Version.APP_VERSION,
-                com.tammymakesthings.circtool.lib.Version.APP_DATE.ToShortDateString())
-            );
+                com.tammymakesthings.circtool.lib.Version.APP_DATE.ToShortDateString()
+                ));
+            this.AddOutput("Tammy Cravit <tammymakesthings@gmail.com>");
+            this.AddOutput("See https://github.com/tammymakesthings/circup/ for the latest version");
+            return this.GetOutput();
         }
     }
 }
